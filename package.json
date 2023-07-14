@@ -1,12 +1,24 @@
 {
   "name": "maestro-test-results-to-slack",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "0.0.4",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev --respawn --pretty --transpile-only src/index.ts",
+    "build": "tsc"
+  },
   "repository": "git@github.com:brett-james-rocketlab/maestro-test-results-to-slack.git",
   "author": "Brett James <brett.james@rocketlab.com.au>",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.10.0",
-    "@actions/github": "^5.1.1"
+    "@actions/github": "^5.1.1",
+    "nodemon": "^3.0.1",
+    "xml-js": "^1.6.11"    
+  },
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.1.6"
   }
 }
