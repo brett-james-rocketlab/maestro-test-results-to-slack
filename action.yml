@@ -1,10 +1,16 @@
-name: 'Hello World'
+name: 'Check folder'
 description: 'See what folder I am running in'
 inputs:
   who-to-greet:  # id of input
     description: 'Who to greet'
     required: true
     default: 'World'
+  test-folder-location:  # Where the test results have been saved 
+    description: 'Folder where the test results have been saved'
+    required: true
+    # default: 'MaestroTests/TestResults'
+    default: '' # Test for blanks
+
 outputs:
   time: # id of output
     description: 'The time we greeted you'
