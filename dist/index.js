@@ -8,18 +8,21 @@ const path_1 = __importDefault(require("path"));
 console.log("Hello World! - about to start");
 async function run() {
     try {
-        const dirnameString = __dirname;
-        console.log("in the function for Run()");
-        console.log(dirnameString);
+        // const dirnameString = __dirname;
+        // console.log("in the function for Run()");
+        // console.log(dirnameString);
         // const rootDir = dirnameString.split("_actions")[0];
-        // Env checking way:
-        const localProjectWorkingPath = process.env.GITHUB_WORKSPACE;
+        // Not needed anymore if we depend on GHA to checkout the repo
+        // const rootDir = dirnameString.split("_actions")[0];
+        const localProjectWorkingPath = '/Users/brettjames/development/maestro-test-results-to-slack';
+        // const localProjectWorkingPath = process.env.GITHUB_WORKSPACE as string;
         console.log(`Our checked out repo location is at: ${localProjectWorkingPath} (only visible after actions/checkout) `);
-        const rootDir = dirnameString.split("_actions")[0];
         // const testFolder = core.getInput("test-results-folder") as string;
         const testFolder = "";
-        console.log(` the root folder of the project should be.... ${rootDir}, while the testFolder is set as: ${testFolder}`);
-        const resultFolder = path_1.default.join(rootDir, testFolder);
+        // console.log(
+        //   ` the root folder of the project should be.... ${rootDir}, while the testFolder is set as: ${testFolder}`
+        // );
+        const resultFolder = path_1.default.join(localProjectWorkingPath, testFolder);
         console.log(`the result folder is set as: ${resultFolder}`);
         const data = await fs_1.default.promises.readdir(resultFolder);
         console.log("- Found files: ");
