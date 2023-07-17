@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import core from "@actions/core";
+import { parseTest } from "./parseTest";
 
 console.log("Hello World! - about to start");
 
@@ -21,8 +22,10 @@ async function run() {
         `Our checked out repo location is at: ${localProjectWorkingPath} (only visible after actions/checkout) `
         );
     
-    const testFolder = core.getInput("test-results-folder") as string;
-    // const testFolder = "" as string;
+    // console.log(`Greeting value is: ${core.getInput("who-to-greet")}`)
+    // Disabled the below for local test running
+    // const testFolder = core.getInput("test-results-folder") as string;
+    const testFolder = "" as string;
     // console.log(
     //   ` the root folder of the project should be.... ${rootDir}, while the testFolder is set as: ${testFolder}`
     // );
@@ -37,7 +40,9 @@ async function run() {
     );
 
     if (xmlFiles.length > 0) {
-      console.log("There is XML files in the folder given");
+    //   console.log("Found this test file result in your folder: ", xmlFiles);
+      const result = parseTest(xmlFiles, resultFolder);
+      console.log("at the end of it all, we have: ", result)
     } else {
       console.log(
         "No XML files found to parse for testing - check your test-results-folder setting."

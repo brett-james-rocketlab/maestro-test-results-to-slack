@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
-const core_1 = __importDefault(require("@actions/core"));
+const parseTest_1 = require("./parseTest");
 console.log("Hello World! - about to start");
 async function run() {
     try {
@@ -18,8 +18,10 @@ async function run() {
         // const localProjectWorkingPath = '/Users/brettjames/development/maestro-test-results-to-slack'
         const localProjectWorkingPath = process.env.GITHUB_WORKSPACE;
         console.log(`Our checked out repo location is at: ${localProjectWorkingPath} (only visible after actions/checkout) `);
-        const testFolder = core_1.default.getInput("test-results-folder");
-        // const testFolder = "" as string;
+        // console.log(`Greeting value is: ${core.getInput("who-to-greet")}`)
+        // Disabled the below for local test running
+        // const testFolder = core.getInput("test-results-folder") as string;
+        const testFolder = "";
         // console.log(
         //   ` the root folder of the project should be.... ${rootDir}, while the testFolder is set as: ${testFolder}`
         // );
@@ -29,7 +31,9 @@ async function run() {
         console.log("- Found files: ");
         const xmlFiles = data.filter((file) => path_1.default.extname(file).toLowerCase() === ".xml");
         if (xmlFiles.length > 0) {
-            console.log("There is XML files in the folder given");
+            //   console.log("Found this test file result in your folder: ", xmlFiles);
+            const result = (0, parseTest_1.parseTest)(xmlFiles, resultFolder);
+            console.log("at the end of it all, we have: ", result);
         }
         else {
             console.log("No XML files found to parse for testing - check your test-results-folder setting.");
