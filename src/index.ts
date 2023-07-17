@@ -7,13 +7,20 @@ console.log("Hello World! - about to start");
 async function run() {
   try {
     const dirnameString = __dirname;
-    console.log("in the function");
+    console.log("in the function for Run()");
     console.log(dirnameString);
     // const rootDir = dirnameString.split("_actions")[0];
+
+    // Env checking way:
+    const localProjectWorkingPath = process.env.GITHUB_WORKSPACE;
+    console.log(
+      `Our checked out repo location is at: ${localProjectWorkingPath} (only visible after actions/checkout) `
+    );
+
     const rootDir = dirnameString.split("_actions")[0];
 
     // const testFolder = core.getInput("test-results-folder") as string;
-    const testFolder = '' as string
+    const testFolder = "" as string;
     console.log(
       ` the root folder of the project should be.... ${rootDir}, while the testFolder is set as: ${testFolder}`
     );
