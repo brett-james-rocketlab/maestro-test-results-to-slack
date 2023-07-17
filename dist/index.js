@@ -14,8 +14,8 @@ async function run() {
         // const rootDir = dirnameString.split("_actions")[0];
         // Not needed anymore if we depend on GHA to checkout the repo
         // const rootDir = dirnameString.split("_actions")[0];
-        const localProjectWorkingPath = '/Users/brettjames/development/maestro-test-results-to-slack';
-        // const localProjectWorkingPath = process.env.GITHUB_WORKSPACE as string;
+        // const localProjectWorkingPath = '/Users/brettjames/development/maestro-test-results-to-slack'
+        const localProjectWorkingPath = process.env.GITHUB_WORKSPACE;
         console.log(`Our checked out repo location is at: ${localProjectWorkingPath} (only visible after actions/checkout) `);
         // const testFolder = core.getInput("test-results-folder") as string;
         const testFolder = "";
