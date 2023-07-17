@@ -1,12 +1,12 @@
-name: 'Check folder'
-description: 'See what folder I am running in'
+name: 'Parse test results'
+description: 'Parse a folder for test results from Maestro'
 inputs:
   who-to-greet:  # id of input
-    description: 'Who to greet'
+    description: 'Who to greet (placeholder value for testing only)'
     required: true
     default: 'World'
-  test-folder-location:  # Where the test results have been saved 
-    description: 'Folder where the test results have been saved'
+  test-results-folder:  # Where the test results have been saved 
+    description: 'Folder where the test results have been saved (not used at the moment, assumes root instead)'
     required: true
     # default: 'MaestroTests/TestResults'
     default: '' # Test for blanks
