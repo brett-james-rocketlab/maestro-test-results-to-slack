@@ -21,8 +21,8 @@ async function run() {
         `Our checked out repo location is at: ${localProjectWorkingPath} (only visible after actions/checkout) `
         );
     
-    // const testFolder = core.getInput("test-results-folder") as string;
-    const testFolder = "" as string;
+    const testFolder = core.getInput("test-results-folder") as string;
+    // const testFolder = "" as string;
     // console.log(
     //   ` the root folder of the project should be.... ${rootDir}, while the testFolder is set as: ${testFolder}`
     // );

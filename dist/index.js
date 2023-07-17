@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
+const core_1 = __importDefault(require("@actions/core"));
 console.log("Hello World! - about to start");
 async function run() {
     try {
@@ -17,8 +18,8 @@ async function run() {
         // const localProjectWorkingPath = '/Users/brettjames/development/maestro-test-results-to-slack'
         const localProjectWorkingPath = process.env.GITHUB_WORKSPACE;
         console.log(`Our checked out repo location is at: ${localProjectWorkingPath} (only visible after actions/checkout) `);
-        // const testFolder = core.getInput("test-results-folder") as string;
-        const testFolder = "";
+        const testFolder = core_1.default.getInput("test-results-folder");
+        // const testFolder = "" as string;
         // console.log(
         //   ` the root folder of the project should be.... ${rootDir}, while the testFolder is set as: ${testFolder}`
         // );
