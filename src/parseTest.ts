@@ -34,11 +34,11 @@ function parseTest(inData: any, testFolder: string) {
           const options = { ignoreComment: true, alwaysChildren: true };
           const content = xml2js(xml, options);
 
-          console.log("calculating test results, deciding if abbreviate output");
+          console.log("Parsing test results, deciding if only need to show summary results");
           const testSuitesBase = content.elements[0].elements[0]
 
           // We only need to show an abrieviated output if the test was successful
-          const successfulTest = true;
+        //   const successfulTest = true;
         //   console.log("hey - ", testSuitesBase, parseInt(testSuitesBase.attributes.skipped), parseInt(testSuitesBase.attributes.failures), parseInt(testSuitesBase.attributes.errors))
 
         // Check the header, it looks like this:

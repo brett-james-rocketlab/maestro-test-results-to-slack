@@ -45,9 +45,13 @@ async function run() {
       console.log("at the end of it all, we have: ", resultText);
 
       //   Check we have all the variables needed
-      const token = core.getInput("slack-token") || null;
-      const channelID = core.getInput("slack-channel-id") || null;
-      if (token == null || channelID == null) {
+    //   const token = core.getInput("slack-token") || null;
+    //   const channelID = core.getInput("slack-channel-id") || null;
+    process.env.GITHUB_WORKSPACE as string;
+    const {SLACKTOKEN, SLACKCHANNELID} = process.env
+    //   const token = core.getInput("slack-token") || null;
+    //   const channelID = core.getInput("slack-channel-id") || null;
+      if (SLACKTOKEN == null || SLACKCHANNELID == null) {
         console.log(
           "Missing slack token or channel ID - please check your workflow file. and add them using with:"
         );
@@ -55,8 +59,8 @@ async function run() {
       }
       const slackSendResults = postToSlack(
         resultText,
-        token,
-        channelID,
+        SLACKTOKEN,
+        SLACKCHANNELID,
         "hello from the action"
       );
       console.log("slackSendResults timestamp: ", slackSendResults);
