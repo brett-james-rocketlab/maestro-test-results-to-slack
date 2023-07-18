@@ -66,16 +66,15 @@ function parseTest(inData: any, testFolder: string) {
             SHORTOUTPUT += "\r\n";
             FULLSTR += SHORTOUTPUT;
           } else {
+            const failedTestName = testSuitesBase.elements[0].attributes.name
             console.log(
-              "building long string for the failed test called: " +
-              testSuitesBase.elements[0].attributes.name
+              "building details for the failed test called: " +
+              failedTestName
             );
-            let OUTPUTSTR = "";
+            let OUTPUTSTR = ""; // Allow falling back to an empty string
 
             // TODO: Change to markdown
-            OUTPUTSTR += testSuitesBase.elements[0].attributes.name;
-            OUTPUTSTR += " has errors:";
-            OUTPUTSTR += "\r\n";
+            OUTPUTSTR += `Test named: ${failedTestName} has errors: \r\n`
 
             const testcases = testSuitesBase.elements;
             testcases.forEach((item: any) => {
