@@ -47,8 +47,10 @@ async function run() {
       //   Check we have all the variables needed
     //   const token = core.getInput("slack-token") || null;
     //   const channelID = core.getInput("slack-channel-id") || null;
-    process.env.GITHUB_WORKSPACE as string;
+    // process.env.GITHUB_WORKSPACE as string;
+
     const {SLACK_TOKEN, SLACK_CHANNEL} = process.env
+    console.log(process.env.SLACK_TOKEN, "oooor", process.env)
     //   const token = core.getInput("slack-token") || null;
     //   const channelID = core.getInput("slack-channel-id") || null;
       if (SLACK_TOKEN == null || SLACK_CHANNEL == null) {
@@ -58,10 +60,10 @@ async function run() {
         return;
       }
       const slackSendResults = postToSlack(
-        resultText,
         SLACK_TOKEN,
         SLACK_CHANNEL,
-        "hello from the action"
+        null,
+        resultText
       );
       console.log("slackSendResults timestamp: ", slackSendResults);
     } else {

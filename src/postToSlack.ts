@@ -30,7 +30,7 @@ export async function postToSlack(
     });
 
     const responseData = await response.json();
-    console.log("Message sent:", responseData);
+    console.log("Message sending results:", responseData);
     return responseData.ts as string;
   } catch (error) {
     console.error("Error sending message:", error);
