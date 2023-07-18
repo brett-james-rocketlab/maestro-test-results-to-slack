@@ -13,7 +13,7 @@
   "dependencies": {
     "@actions/core": "^1.10.0",
     "@actions/github": "^5.1.1",
-    "node-fetch": "^3.3.1",
+    "node-fetch-cjs": "^3.2.10",
     "nodemon": "^3.0.1",
     "xml-js": "^1.6.11"
   },

@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+import fetch from 'node-fetch-cjs';
 
 /**
  * Posts a string based message to slack.
@@ -37,33 +37,7 @@ export async function postToSlack(
     return responseData.ts as string;
   } catch (error) {
     console.error("Error sending message:", error);
-  }
-
-  return "hello!";
-}
-
-async function postMessageToSlack(
-  token: string,
-  channelID: string,
-  message: string
-) {
-  try {
-    const response = await fetch("https://slack.com/api/chat.postMessage", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        channel: channelID,
-        text: message,
-      }),
-    });
-
-    const responseData = await response.json();
-
-    console.log("Message sent:", responseData);
-  } catch (error) {
-    console.error("Error sending message:", error);
+    return 2 // Indicate failure
   }
 }
+
