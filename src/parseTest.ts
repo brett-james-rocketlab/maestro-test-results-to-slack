@@ -96,10 +96,12 @@ function parseTest(inData: any, testFolder: string) {
                 //  functionality failure Element not found: Text matching regex: GO TO SCREEN dddd3
 
                   testCaseNameResult =
-                    ":x: " + testCaseNameResult + " " + shortMessage;
+                    `:x: ~${testCaseNameResult}~ _${shortMessage}_`;
+
+                    
                 } else {
                     // Success: todo reorder this
-                  testCaseNameResult = ":white_check_mark: " + testCaseNameResult;
+                  testCaseNameResult = `:white_check_mark: ${testCaseNameResult}`;
                 }
                 testCaseNameResult = "    " + testCaseNameResult;
                 testCaseNameResult += "\r\n";
