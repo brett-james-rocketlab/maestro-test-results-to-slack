@@ -1,3 +1,5 @@
+import fetch from 'node-fetch';
+
 /**
  * Posts a string based message to slack.
  * @param {any} token:string
@@ -17,6 +19,7 @@ export async function postToSlack(
 
   // Do blocks if we can instead of text.
   try {
+    console.log("Sending message to slack via POST...")
     const response = await fetch("https://slack.com/api/chat.postMessage", {
       method: "POST",
       headers: {
