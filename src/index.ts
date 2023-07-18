@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import core from "@actions/core";
+// import core from "@actions/core";
 import { parseTest } from "./parseTest";
 import { postToSlack } from "./postToSlack";
 

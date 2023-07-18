@@ -5,8 +5,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "dev": "ts-node-dev --respawn --pretty --transpile-only src/index.ts",
-    "esbuild": "node esbuild.config.js",
-    "build": "tsc"
+    "build": "node esbuild.config.js"
   },
   "repository": "git@github.com:brett-james-rocketlab/maestro-test-results-to-slack.git",
   "author": "Brett James <brett.james@rocketlab.com.au>",
@@ -14,6 +13,7 @@
   "dependencies": {
     "@actions/core": "^1.10.0",
     "@actions/github": "^5.1.1",
+    "node-fetch": "^3.3.1",
     "nodemon": "^3.0.1",
     "xml-js": "^1.6.11"
   },
