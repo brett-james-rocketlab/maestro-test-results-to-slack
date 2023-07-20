@@ -63,6 +63,10 @@ function parseTest(inData: any, testFolder: string) {
             ) {
               SHORTOUTPUT += " :white_check_mark:";
             }
+
+            // Also add time it took to run
+            SHORTOUTPUT += ` (${testSuitesBase.attributes.time}s)\r\n`
+
             SHORTOUTPUT += "\r\n";
             FULLSTR += SHORTOUTPUT;
           } else {
@@ -108,6 +112,12 @@ function parseTest(inData: any, testFolder: string) {
                 OUTPUTSTR += testCaseNameResult;
               }
             });
+
+            // Check for a global time it took to run and add that.
+            if (testSuitesBase.attributes.name) {
+                OUTPUTSTR += `> Total time to run: ${testSuitesBase.attributes.time} seconds\r\n`
+            }
+
             FULLSTR += OUTPUTSTR + "\r\n";
           }
         } catch (error) {

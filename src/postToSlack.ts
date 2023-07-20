@@ -1,5 +1,9 @@
 import fetch from "node-fetch-cjs";
-import { slackOptions, slackPostMessageOptions, slackPostMessageResponse } from "./types";
+import {
+  slackOptions,
+  slackPostMessageOptions,
+  slackPostMessageResponse,
+} from "./types";
 
 /**
  * Posts a string based message to slack.
@@ -13,21 +17,30 @@ import { slackOptions, slackPostMessageOptions, slackPostMessageResponse } from 
  * @returns {any}
  */
 export async function postToSlack(options: slackOptions) {
-  const { token, channelID, message, messageBlock, thread_ts, ts } = options;
+  const { token, channelID, message, messageBlock, attachments, thread_ts, ts } = options;
 
   if (messageBlock) {
-    const itemCount = messageBlock.length() || 0;
+    const itemCount = messageBlock.length || 0;
     console.log(`In the MessageBlock defined, there are ${itemCount} items.`);
   }
 
   // Do blocks if we can instead of text.
   try {
-    console.log("Sending message to slack via POST...");
-
     let slackOptions: slackPostMessageOptions = {
       channel: channelID,
-      text: message,
     };
+
+    if (message) {
+      slackOptions["text"] = message;
+    }
+
+    if (messageBlock) {
+      slackOptions["blocks"] = messageBlock;
+    }
+
+    if (attachments) {
+        slackOptions["attachments"] = attachments;
+      }
 
     // The default api url to send to
     let apiUrl = "https://slack.com/api/chat.postMessage";
@@ -43,7 +56,7 @@ export async function postToSlack(options: slackOptions) {
       slackOptions["ts"] = ts;
       apiUrl = "https://slack.com/api/chat.update";
     }
-    console.log(slackOptions);
+    // console.log(slackOptions);
 
     const response = await fetch(apiUrl, {
       method: "POST",
@@ -56,7 +69,10 @@ export async function postToSlack(options: slackOptions) {
     // console.log(`We sent this extraOptions: ${extraOptions.thread_ts}`)
 
     const responseData = await response.json();
-    console.log(`Message sending results after sending to :${apiUrl}`, responseData);
+    // console.log(
+    //   `Message sending results after sending to :${apiUrl}`,
+    //   responseData
+    // );
     return responseData as slackPostMessageResponse;
   } catch (error) {
     console.error("Error sending message:", error);

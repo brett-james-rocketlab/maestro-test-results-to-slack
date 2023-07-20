@@ -26,6 +26,9 @@ jspm_packages/
 # Yarn Integrity file
 .yarn-integrity
 
+# Apple
+.DS_Store
+
 # dotenv environment variable files
 .env
 .env.development.local
