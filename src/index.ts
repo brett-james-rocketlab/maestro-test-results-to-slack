@@ -103,6 +103,9 @@ async function run() {
         can_send_pictures = true;
       }
 
+      console.log(`We have sent the test results to slack. Can we check for images now? ${can_send_pictures}, the thread_ts is: ${testresults_thread_ts}, we need this to post inside it.`);
+      console.info("This is where we'll look for images - make sure  your test runner saves to this folder. ", resultFolder)
+
       const testPictures = checkFilesInFolder(resultFolder, "png");
       if (testPictures.length > 0 && can_send_pictures) {
         console.log("There are pictures to send", testPictures);
