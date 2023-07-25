@@ -75,7 +75,8 @@ export async function postToSlack(options: slackOptions) {
     // );
     return responseData as slackPostMessageResponse;
   } catch (error) {
-    console.error("Error sending message:", error);
-    return 2; // Indicate failure, silent or crash?
+    console.error("Error sending message, crashing after this:", error);
+    throw new Error(`Error sending message: ${error}`);
+    // return 2; // Indicate failure, silent or crash is needed?
   }
 }

@@ -5,22 +5,12 @@ import { parseTest } from "./parseTest";
 import { postToSlack } from "./postToSlack";
 import {
   checkFilesInFolder,
-  constructSlackImageMarkdown,
-  minimalFileSend,
 } from "./helpers";
 import alternativeUploadFileToSlack from "./helpers";
 
 async function run() {
   try {
-    // const dirnameString = __dirname;
-    // console.log("in the function for Run()");
-    // console.log(dirnameString);
-    // const rootDir = dirnameString.split("_actions")[0];
-
-    // Not needed anymore if we depend on GHA to checkout the repo
-    // const rootDir = dirnameString.split("_actions")[0];
-
-    // const localProjectWorkingPath = '/Users/brettjames/development/maestro-test-results-to-slack'
+    // const localProjectWorkingPath = '/Users/brettjames/development/maestro-test-results-to-slack' // to fake a local testing spot
     const localProjectWorkingPath = process.env.GITHUB_WORKSPACE as string;
     console.log(
       `Our checked out repo location is at: ${localProjectWorkingPath} (normally only visible after actions/checkout) `
@@ -103,8 +93,13 @@ async function run() {
         can_send_pictures = true;
       }
 
-      console.log(`We have sent the test results to slack. Can we check for images now? ${can_send_pictures}, the thread_ts is: ${testresults_thread_ts}, we need this to post inside it.`);
-      console.info("This is where we'll look for images - make sure  your test runner saves to this folder. ", resultFolder)
+      console.log(
+        `We have sent the test results to slack. Can we check for images now? ${can_send_pictures}, the thread_ts is: ${testresults_thread_ts}, we need this to post inside it.`
+      );
+      console.info(
+        "This is where we'll look for images - make sure  your test runner saves to this folder. ",
+        resultFolder
+      );
 
       const testPictures = checkFilesInFolder(resultFolder, "png");
       if (testPictures.length > 0 && can_send_pictures) {
@@ -150,7 +145,6 @@ async function run() {
         //   const slackPictureUploadMessageResults = await postToSlack(pictureMessageOptions);
         //   console.log("We got there I think", slackPictureUploadMessageResults)
 
-        console.log("Sent the pictures to slack.");
         // console.log(`The result after uploading pictures has been... ${imagesUploaded}`)
       }
     } else {
