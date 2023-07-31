@@ -7,9 +7,10 @@ import { safeTestUnits } from "./helpers";
  * Parses an XML file containing a JUnit and writes a usable output
  * @param {string[]} inData
  * @param {string} testFolder
+ * @param {string} introMessage optional - a message to add to the top of the output
  * @returns {string}
  */
-function parseTest(inData: any, testFolder: string) {
+function parseTest(inData: any, testFolder: string, introMessage?: string) {
   function getTestCaseResult(inData: any) {
     // It is possible to have multiple test results, although I have not seen that happen yet...
     let parsedResult = "";
@@ -54,8 +55,19 @@ function parseTest(inData: any, testFolder: string) {
               "building abbreviated string for " +
               testSuitesBase.attributes.name
             );
-            let SHORTOUTPUT =
-              "" + testSuitesBase.attributes.name + " all passed:";
+            // The following typically looks like:
+            // Test Suite all passed: :white:
+            // where Test Suite is the name defined in the xml itself.
+
+            let SHORTOUTPUT = "";
+            // Optional intro message, with an linebreak
+
+            if (introMessage !== undefined && introMessage !== null) {
+              SHORTOUTPUT += `${introMessage} \r\n`
+            }
+
+            SHORTOUTPUT += testSuitesBase.attributes.name + " all passed:";
+
             for (
               let i = 0;
               i < parseInt(testSuitesBase.attributes.tests);
@@ -76,6 +88,11 @@ function parseTest(inData: any, testFolder: string) {
               failedTestName
             );
             let OUTPUTSTR = ""; // Allow falling back to an empty string
+            
+            // Optional intro message, with an linebreak
+            if (introMessage !== undefined && introMessage !== null) {
+              OUTPUTSTR += `${introMessage} \r\n`
+            }
 
             // TODO: Change to markdown
             OUTPUTSTR += `Test named: ${failedTestName} has errors: \r\n`

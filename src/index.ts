@@ -20,7 +20,7 @@ async function run() {
     // Disabled the below for local test running
     // const testFolder = core.getInput("test-results-folder") as string;
 
-    const { TEST_RESULTS_FOLDER } = process.env;
+    const { TEST_RESULTS_FOLDER, INTRO_MESSAGE } = process.env;
     const testFolder =
       typeof TEST_RESULTS_FOLDER === "string" &&
       TEST_RESULTS_FOLDER.trim() !== ""
@@ -53,7 +53,7 @@ async function run() {
 
     if (xmlFiles.length > 0) {
       //   console.log("Found this test file result in your folder: ", xmlFiles);
-      const resultText = parseTest(xmlFiles, resultFolder);
+      const resultText = parseTest(xmlFiles, resultFolder, INTRO_MESSAGE);
       console.log("Finished Parsing test results, we have: \n", resultText);
 
       //   Check we have all the variables needed

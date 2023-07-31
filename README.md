@@ -42,6 +42,11 @@ For more information checkout: https://api.slack.com/tutorials/tracks/getting-a-
 **Required**
 The channel ID of the place you want to post in - you can get this easily by visiting the channel in a browser and copying the last part of the URL (will be in Capitals)
 
+### `INTRO_MESSAGE`
+
+Optional
+The string provided here will be prepended to the start of the test results (with a line break added).
+
 
 ## Example usage
 
