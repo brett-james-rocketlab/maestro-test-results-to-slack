@@ -1,5 +1,6 @@
 This package was sponsored by Rocket Lab Ltd.
 Give them a check out here if you have Application development needs: https://www.rocketlab.com.au/
+![Rocket Lab Logo]([images/testresults.png](https://i.imgur.com/Fh9xG5M.png))
 
 ## Examples
 ### A passing, and failing test:
