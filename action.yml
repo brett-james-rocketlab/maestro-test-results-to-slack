@@ -1,7 +1,8 @@
 name: 'Parse xml test results and send to Slack'
 description: 'Parse a folder for test results from Maestro'
-icon: 'book-open'
-color: 'white'
+branding: 
+  icon: 'book-open'
+  color: 'white'
   # These were replaced by ENV's, because we couldn't access them inside the code needed
   # test-results-folder:  # Where the test results have been saved 
   #   description: 'Folder where the test results have been saved (not used at the moment, assumes root instead)'
