@@ -1,16 +1,9 @@
 This package was sponsored by Rocket Lab.
+
 Check them out here if you have web or mobile application development needs: https://www.rocketlab.com.au/
 ![Rocket Lab Logo](https://i.imgur.com/Fh9xG5M.png)
 
-## Examples
-### A passing, and failing test:
-![mixed tests](images/testresults.png)
-
-### Images being added to the original test results thread:
-![images thread](images/screenshotsinthread.png)
-
-### All tests passing, abbrievated result:
-![all passed](images/allpassed.png)
+---
 
 # Maestro test parser
 
@@ -25,6 +18,20 @@ https://api.slack.com/methods/chat.postMessage
 Uploading files requires the files.write permission scope. For more information checkout: https://api.slack.com/scopes/files:write
 
 The typical workflow is to check for a test file, and if we get results from there then check for pictures or videos to upload, and attach them to the initial message that has the test results on slack.
+
+---
+
+
+## Examples
+### A passing, and failing test:
+![mixed tests](images/testresults.png)
+
+### Images being added to the original test results thread:
+![images thread](images/screenshotsinthread.png)
+
+### All tests passing, abbrievated result:
+![all passed](images/allpassed.png)
+
 
 
 # What is Maestro?
@@ -47,6 +54,10 @@ The channel ID of the place you want to post in - you can get this easily by vis
 
 Optional
 The string provided here will be prepended to the start of the test results (with a line break added).
+
+### `TEST_RESULTS_FOLDER`
+Optional (recommended is MaestroTests/TestResults/, default is "" or root project folder)
+This is where to look for the report.xml file, as well as the pictures/videos to process.
 
 
 ## Example usage
