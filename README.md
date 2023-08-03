@@ -1,5 +1,5 @@
-This package was sponsored by Rocket Lab Ltd.
-Give them a check out here if you have Application development needs: https://www.rocketlab.com.au/
+This package was sponsored by Rocket Lab.
+Check them out here if you have web or mobile application development needs: https://www.rocketlab.com.au/
 ![Rocket Lab Logo](https://i.imgur.com/Fh9xG5M.png)
 
 ## Examples
