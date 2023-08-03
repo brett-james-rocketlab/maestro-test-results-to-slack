@@ -1,13 +1,11 @@
 name: 'Parse xml test results and send to Slack'
 description: 'Parse a folder for test results from Maestro'
-inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet (placeholder value for testing only)'
-    required: true
-    default: 'World'
-  test-results-folder:  # Where the test results have been saved 
-    description: 'Folder where the test results have been saved (not used at the moment, assumes root instead)'
-    required: false
+icon: 'book-open'
+color: 'white'
+  # These were replaced by ENV's, because we couldn't access them inside the code needed
+  # test-results-folder:  # Where the test results have been saved 
+  #   description: 'Folder where the test results have been saved (not used at the moment, assumes root instead)'
+  #   required: false
     # default: 'MaestroTests/TestResults'
     default: '' # Test for blanks
   # slack-token:  # Slack token, get this from https://api.slack.com/tutorials/tracks/getting-a-token
@@ -17,9 +15,6 @@ inputs:
   #   default: '' # Test for blanks
 
 
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
 runs:
   using: 'node16'
   main: 'dist/index.js'
