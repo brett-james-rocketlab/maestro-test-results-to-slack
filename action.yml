@@ -1,4 +1,4 @@
-name: 'Parse test results'
+name: 'Parse xml test results and send to Slack'
 description: 'Parse a folder for test results from Maestro'
 inputs:
   who-to-greet:  # id of input
