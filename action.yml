@@ -1,3 +1,6 @@
+## to use this, populate test-folder-results, slack-token, and slack-channel as env:. 
+## Have a look at the readme.md for a better description on how to do this.
+
 name: 'Parse xml test results and send to Slack'
 description: 'Parse a folder for test results from Maestro'
 branding: 
@@ -8,7 +11,7 @@ branding:
   #   description: 'Folder where the test results have been saved (not used at the moment, assumes root instead)'
   #   required: false
     # default: 'MaestroTests/TestResults'
-    default: '' # Test for blanks
+   # default: '' # Test for blanks
   # slack-token:  # Slack token, get this from https://api.slack.com/tutorials/tracks/getting-a-token
   #   description: 'The Slack token with permissions to post to the channel - starts with xoxb- : https://api.slack.com/tutorials/tracks/getting-a-token'
   #   required: true
