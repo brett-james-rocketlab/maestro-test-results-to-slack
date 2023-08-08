@@ -91,6 +91,10 @@ async function run() {
       if (slackSendResults && slackSendResults.ok) {
         testresults_thread_ts = slackSendResults.ts;
         can_send_pictures = true;
+      } else {
+        console.log(
+          `slackSendResults failed, we got this back: ${slackSendResults}`
+        );
       }
 
       console.log(
@@ -118,6 +122,24 @@ async function run() {
           console.log(`Sending ${testPicture}`);
           await alternativeUploadFileToSlack(pictureOptions);
         }
+        const testVideos = checkFilesInFolder(resultFolder, "mp4");
+        if (testVideos.length > 0 && can_send_pictures) {
+          console.log("There are video(s) to send", testVideos);
+          for (const testVideo of testVideos) {
+            const fileToSend = path.join(resultFolder, testVideo);
+            const videoOptions = {
+              token: SLACK_TOKEN,
+              baseFolder: resultFolder,
+              channels: [SLACK_CHANNEL],
+              // thread_ts: SLACK_THREAD_TS,
+              thread_ts: testresults_thread_ts,
+              filePath: fileToSend,
+            };
+            //   console.log(pictureOptions)
+            console.log(`Sending video: ${testVideo} - careful of size. (Slack can randomly fail above 20mb)`);
+            await alternativeUploadFileToSlack(videoOptions);
+          }        
+
 
         //   postToSlack(pictureOptions);
         // const imagesUploaded = await uploadFilesToSlack(pictureOptions)
