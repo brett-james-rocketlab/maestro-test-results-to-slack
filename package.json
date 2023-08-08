@@ -10,7 +10,6 @@
     "build": "node esbuild.config.js"
   },
   "repository": "git@github.com:brett-james-rocketlab/maestro-test-results-to-slack.git",
-  "author": "Brett James <brett.james@rocketlab.com.au>",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.10.0",

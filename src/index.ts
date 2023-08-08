@@ -3,9 +3,7 @@ import path from "path";
 // import core from "@actions/core";
 import { parseTest } from "./parseTest";
 import { postToSlack } from "./postToSlack";
-import {
-  checkFilesInFolder,
-} from "./helpers";
+import { checkFilesInFolder } from "./helpers";
 import alternativeUploadFileToSlack from "./helpers";
 
 async function run() {
@@ -107,7 +105,7 @@ async function run() {
 
       const testPictures = checkFilesInFolder(resultFolder, "png");
       if (testPictures.length > 0 && can_send_pictures) {
-        console.log("There are pictures to send", testPictures);
+        console.log("We've checked - there are pictures to send", testPictures);
         for (const testPicture of testPictures) {
           const fileToSend = path.join(resultFolder, testPicture);
           const pictureOptions = {
@@ -122,6 +120,12 @@ async function run() {
           console.log(`Sending ${testPicture}`);
           await alternativeUploadFileToSlack(pictureOptions);
         }
+
+        console.info(
+          "We are also going to check in this folder for videos",
+          resultFolder
+        );
+
         const testVideos = checkFilesInFolder(resultFolder, "mp4");
         if (testVideos.length > 0 && can_send_pictures) {
           console.log("There are video(s) to send", testVideos);
@@ -136,43 +140,45 @@ async function run() {
               filePath: fileToSend,
             };
             //   console.log(pictureOptions)
-            console.log(`Sending video: ${testVideo} - careful of size. (Slack can randomly fail above 20mb)`);
+            console.log(
+              `Sending video: ${testVideo} - careful of size. (Slack can randomly fail above 20mb)`
+            );
             await alternativeUploadFileToSlack(videoOptions);
-          }        
+          }
 
+          //   postToSlack(pictureOptions);
+          // const imagesUploaded = await uploadFilesToSlack(pictureOptions)
+          // const result = await minimalFileSend(resultFolder+testPictures[0], testPictures[0])
 
-        //   postToSlack(pictureOptions);
-        // const imagesUploaded = await uploadFilesToSlack(pictureOptions)
-        // const result = await minimalFileSend(resultFolder+testPictures[0], testPictures[0])
+          // const imageBlocks = constructSlackImageMarkdown(imagesUploaded)
 
-        // const imageBlocks = constructSlackImageMarkdown(imagesUploaded)
+          // To post as a markdown message
+          // const pictureMessageOptions = {
+          //     token: SLACK_TOKEN,
+          //     channelID: SLACK_CHANNEL,
+          //     message: imagesUploaded[0],
+          //     // messageBlock:constructSlackImageMarkdown(imagesUploaded),
+          //     thread_ts: SLACK_THREAD_TS,
+          //     // ts: SLACK_TS,
+          //   };
+          // const pictureMessageOptions = {
+          //     token: SLACK_TOKEN,
+          //     channelID: SLACK_CHANNEL,
+          //     // message: resultText,
+          //     messageBlock:imageBlocks,
+          //     thread_ts: SLACK_THREAD_TS,
+          //     // ts: SLACK_TS,
+          //   };
+          //   const slackPictureUploadMessageResults = await postToSlack(pictureMessageOptions);
+          //   console.log("We got there I think", slackPictureUploadMessageResults)
 
-        // To post as a markdown message
-        // const pictureMessageOptions = {
-        //     token: SLACK_TOKEN,
-        //     channelID: SLACK_CHANNEL,
-        //     message: imagesUploaded[0],
-        //     // messageBlock:constructSlackImageMarkdown(imagesUploaded),
-        //     thread_ts: SLACK_THREAD_TS,
-        //     // ts: SLACK_TS,
-        //   };
-        // const pictureMessageOptions = {
-        //     token: SLACK_TOKEN,
-        //     channelID: SLACK_CHANNEL,
-        //     // message: resultText,
-        //     messageBlock:imageBlocks,
-        //     thread_ts: SLACK_THREAD_TS,
-        //     // ts: SLACK_TS,
-        //   };
-        //   const slackPictureUploadMessageResults = await postToSlack(pictureMessageOptions);
-        //   console.log("We got there I think", slackPictureUploadMessageResults)
-
-        // console.log(`The result after uploading pictures has been... ${imagesUploaded}`)
+          // console.log(`The result after uploading pictures has been... ${imagesUploaded}`)
+        }
+      } else {
+        console.log(
+          "No XML files found to parse for testing - check your test-results-folder setting."
+        );
       }
-    } else {
-      console.log(
-        "No XML files found to parse for testing - check your test-results-folder setting."
-      );
     }
   } catch (err) {
     console.log("Had an error while attempting to open the folder: " + err);
